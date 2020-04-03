@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="//unpkg.com/@ungap/custom-elements-builtin"></script>
+    <script src="./main.js" type="module"></script>
+  </head>
+  <body>
+    <input is="reflex-input" :value="name" oninput="set(this.path, this.value)" />
+    <div is="reflex-div" :text-content="name"></div>
+    <div is="reflex-div" :text-content="nameUpper"></div>
+
+    <input is="reflex-input" :value="image" oninput="set(this.path, this.value)" />
+    <div><img is="reflex-img" :src="image" :alt="name" /></div>
+
+    <section class="for-item" is="reflex-section" :for="todo in todos">
+      <h4 is="reflex-h4" :text-content="todo.title"></h4>
+      <input is="reflex-input" :value="todo.title" oninput="set(this.path, this.value)" />
+      <div class="person-item" is="reflex-div" :for="person in todo.persons">
+        Name: <span is="reflex-span" :text-content="person.name"></span>
+        <ul>
+          <li
+            is="reflex-li"
+            :for="skill in person.skills"
+            :text-content="skill"
+          ></li>
+        </ul>
+      </div>
+
+      <hr />
+    </section>
+  </body>
+</html>
