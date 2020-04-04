@@ -12,18 +12,18 @@ export default class {
   }
 
   get(path, node) {
-    const value = path
-      .split(".")
-      .reduce((obj, key) => obj[key] || "", this.state);
-
-    if (typeof value === "function") {
-      return value({
-        ...this,
-        observe: this.observe.bind({ ...this, node })
-      });
-    } else {
-      return value;
-    }
+    return path.split(".").reduce((obj, key) => {
+      if (!obj) {
+        return "";
+      } else if (typeof obj[key] === "function") {
+        return obj[key]({
+          ...this,
+          observe: this.observe.bind({ ...this, node }),
+        });
+      } else {
+        return obj[key];
+      }
+    }, this.state);
   }
 
   set(path, value, _keys = null, _obj = this.state) {
@@ -33,10 +33,7 @@ export default class {
       this.set(path, value, _keys.slice(1), _obj[_keys[0]]);
     } else {
       _obj[_keys[0]] = value;
-
-      this.observer[path].forEach(fn => {
-        typeof fn.render === "function" ? fn.render() : fn(this);
-      });
+      this.runObserver(path);
     }
   }
 
@@ -52,10 +49,18 @@ export default class {
     }
   }
 
+  runObserver(path) {
+    if (this.observer[path]) {
+      this.observer[path].forEach((fn) => {
+        typeof fn.render === "function" ? fn.render() : fn(this);
+      });
+    }
+  }
+
   define(tags) {
     const reflex = this;
 
-    tags.forEach(tag => {
+    tags.forEach((tag) => {
       customElements.define(
         `reflex-${tag}`,
         class extends document.createElement(tag).constructor {
@@ -64,12 +69,12 @@ export default class {
           }
 
           connectedCallback() {
-            if (this.hasAttribute(":for")) {
-              const [item, source] = this.getAttribute(":for").split(" in ");
-              this.removeAttribute(":for");
+            if (this.hasAttribute("for")) {
+              const [item, source] = this.getAttribute("for").split(" in ");
+              this.removeAttribute("for");
               this.setAttribute("_for", `${item} in ${source}`);
               this.orginalNode = this.cloneNode(true);
-              this.setAttribute(":for", `${item} in ${source}`);
+              this.setAttribute("for", `${item} in ${source}`);
               this.removeAttribute("_for");
             }
 
@@ -78,89 +83,96 @@ export default class {
 
           render() {
             Array.from(this.attributes)
-              .filter(({ name }) => name.startsWith(":"))
-              .forEach(({ name, value: path }) => {
-                const forParents = this._getParents("[\\:for], [_for]", this);
+              .filter(
+                ({ name }) =>
+                  name.startsWith(":") ||
+                  name === "for" ||
+                  name === "text" ||
+                  name === "html"
+              )
+              .forEach(({ name, value: attrValue }) => {
+                const path = this._getPath(name, attrValue);
+                const value = reflex.get(path, this);
 
-                if (this.hasAttribute(":for") || this.hasAttribute("_for")) {
-                  forParents.unshift(this);
-                }
-
-                forParents.forEach(parent => {
-                  const index = parent._index || 0;
-                  const [item, source] = parent.hasAttribute(":for")
-                    ? parent.getAttribute(":for").split(" in ")
-                    : parent.getAttribute("_for").split(" in ");
-
-                  path = path.replace(
-                    new RegExp(`(^|\\.| in )${item}(\\.|$)`),
-                    `$1${source}.${index}$2`
-                  );
-                });
-
-                if (name === ":value") {
-                  this.path = path;
-                }
-
-                if (name === ":for" || name === "_for") {
-                  const source = path.split(" in ")[1];
-                  const lastIndex = reflex.get(source).length - 1;
-
-                  reflex.observe.bind({ ...reflex, node: this })(source);
+                if (name === "for" || name === "_for") {
                   this._renderChilds(this);
 
-                  // Remove items
                   while (this.nextSibling._index > 0) {
-                    this.nextSibling.remove();
-                  }
+                    this.nextSibling.remove()
+                  };
 
-                  // Create for items
-                  if (lastIndex >= 0 && this.orginalNode) {
+                  if (value.length > 0 && this.orginalNode) {
                     this.hidden = false;
 
-                    for (let index = lastIndex; index > 0; index--) {
+                    for (let index = value.length - 1; index > 0; index--) {
                       const node = this.orginalNode.cloneNode(true);
                       node._index = index;
-                      reflex.observe.bind({ ...reflex, node: node })(source);
                       this.after(node);
                       this._renderChilds(node);
                     }
                   } else {
                     this.hidden = true;
                   }
+                } else if (name === "text" && this.textContent !== value) {
+                  this.textContent = value;
+                } else if (name === "html" && this.innerHTML !== value) {
+                  this.innerHTML = value;
+                } else if (name === ":value" && this.value !== value) {
+                  this.value = value;
                 } else if (name.startsWith(":")) {
-                  reflex.observe.bind({ ...reflex, node: this })(path);
-
-                  const pascal = name
-                    .slice(1)
-                    .replace(/(^|-)(html|dom|uri)/, ($0, $1, $2) =>
-                      `${$2}`.toUpperCase()
-                    )
-                    .replace(/-(.)/g, ($0, $1) => $1.toUpperCase());
-
-                  if (typeof this[pascal] !== undefined) {
-                    this[pascal] = reflex.get(path, this);
-                  } else {
-                    this.setAttribute(name.slice(1), reflex.get(path, this));
-                  }
+                  this.setAttribute(name.slice(1), value);
                 }
+
+                if (name === ":value" || name === "text" || name === "html") {
+                  this.path = path;
+                }
+
+                reflex.observe.bind({ ...reflex, node: this })(path);
               });
           }
 
-          _getParents(selector, el, _parents = []) {
-            const closestEl = el.parentNode && el.parentNode.closest(selector);
-            if (closestEl) {
-              _parents.push(closestEl);
-              return this._getParents(selector, closestEl, _parents);
-            } else {
-              return _parents;
+          _getPath(name, attrValue) {
+            let path =
+              name === "for" || name === "_for"
+                ? attrValue.split(" in ")[1]
+                : attrValue;
+
+            const getParents = (el, _parents = []) => {
+              const closestEl =
+                el.parentNode && el.parentNode.closest("[for], [_for]");
+              if (closestEl) {
+                _parents.push(closestEl);
+                return getParents(closestEl, _parents);
+              } else {
+                return _parents;
+              }
+            };
+
+            const parents = getParents(this);
+
+            if (this.hasAttribute("for") || this.hasAttribute("_for")) {
+              parents.unshift(this);
             }
+
+            parents.forEach((parent) => {
+              const index = parent._index || 0;
+              const [item, source] = parent.hasAttribute("for")
+                ? parent.getAttribute("for").split(" in ")
+                : parent.getAttribute("_for").split(" in ");
+
+              path = path.replace(
+                new RegExp(`(^|\\.)${item}(\\.)`),
+                `$1${source}.${index}$2`
+              );
+            });
+
+            return path;
           }
 
           _renderChilds(node) {
             node
               .querySelectorAll("[is^='reflex-'")
-              .forEach(childNode => childNode.render && childNode.render());
+              .forEach((childNode) => childNode.render && childNode.render());
           }
         },
         { extends: tag }

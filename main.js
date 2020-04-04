@@ -13,22 +13,41 @@ window.reflex = new Reflex({
     "div",
     "span",
     "img",
-    "li",
-    "section",
+    "article",
+    "h1",
+    "h2",
+    "main",
+    "button",
     "input",
-    "textarea",
-    "select",
-    "h4"
+    "a"
   ],
-  state,
+  state: {
+    title: 'Api test',
+    photo: 'https://picsum.photos/id/237/200/300',
+    posts: [],
+    fivePosts({observe, state}) {
+      observe("posts");
+      return state.posts.slice(2, 7);
+    },
+    true: true,
+    false: false,
+  },
   watch: {
-    name() {
-      console.log("name has changed!");
-    }
+    // posts() {
+    //   console.log("Blog posts is updated!");
+    // }
   }
 });
 
+// Fetch blog posts
+fetch("https://www.wpkube.com/wp-json/wp/v2/posts")
+  .then((raw) => raw.json())
+  .then((response) => {
+    reflex.set('posts', response)
+  });
+
 window.set = (path, value) => {
+  console.log(path, value)
   reflex.set(path, value);
   localStorage.setItem("reflex", JSON.stringify(reflex.state));
 };

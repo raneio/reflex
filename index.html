@@ -8,28 +8,18 @@
     <script src="./main.js" type="module"></script>
   </head>
   <body>
-    <input is="reflex-input" :value="name" oninput="set(this.path, this.value)" />
-    <div is="reflex-div" :text-content="name"></div>
-    <div is="reflex-div" :text-content="nameUpper"></div>
+    <h1 is="reflex-h1" text="title" contenteditable="true" oninput="set(this.path, this.textContent)"></h1>
+    <input is="reflex-input" :value="title" oninput="set(this.path, this.value)"></input>
 
-    <input is="reflex-input" :value="image" oninput="set(this.path, this.value)" />
-    <div><img is="reflex-img" :src="image" :alt="name" /></div>
+    <button is="reflex-button" :class="title">Foobar</button>
 
-    <section class="for-item" is="reflex-section" :for="todo in todos">
-      <h4 is="reflex-h4" :text-content="todo.title"></h4>
-      <input is="reflex-input" :value="todo.title" oninput="set(this.path, this.value)" />
-      <div class="person-item" is="reflex-div" :for="person in todo.persons">
-        Name: <span is="reflex-span" :text-content="person.name"></span>
-        <ul>
-          <li
-            is="reflex-li"
-            :for="skill in person.skills"
-            :text-content="skill"
-          ></li>
-        </ul>
-      </div>
-
+    <img is="reflex-img" :src="photo" alt="">
+    
+    <article is="reflex-article" for="post in fivePosts">
+      <h2><a is="reflex-a" :href="post.link" text="post.title.rendered"></a></h2>
+      <input is="reflex-input" :value="post.title.rendered" oninput="set(this.path, this.value)"></input>
+      <main is="reflex-main" html="post.content.rendered"></main>
       <hr />
-    </section>
+    </article>
   </body>
 </html>
