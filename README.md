@@ -4,6 +4,8 @@ Reactive HTML like Vue and React, but just **1 kilobyte**. Reflex is based on we
 
 ---
 
+
+
 ## Get started
 
 ```javascript
@@ -29,6 +31,7 @@ window.reflex = new Reflex({
 ```
 
 
+
 ## text / html
 
 ```html
@@ -36,9 +39,11 @@ window.reflex = new Reflex({
 <p is="reflex-p" html="subtitle"></p>
 ```
 
-### Awesome monkeys!
+> ### Awesome monkeys!
+>
+> Everyone **loves** monkeys.
+>
 
-Everyone **loves** monkeys.
 
 
 ## :attribute
@@ -47,7 +52,9 @@ Everyone **loves** monkeys.
 <img is="reflex-img" :src="animals.0.photo" :alt="animals.0.name">
 ```
 
-![Monk](./docs/monk-1.jpg) 
+> ![Monk](./docs/monk-1.jpg) 
+>
+
 
 
 ## for
@@ -58,7 +65,9 @@ Everyone **loves** monkeys.
 </div>
 ```
 
-![Monk](./docs/monk-1.jpg) ![Twins](./docs/monk-2.jpg) ![Jon Snow](./docs/monk-3.jpg) 
+> ![Monk](./docs/monk-1.jpg) ![Twins](./docs/monk-2.jpg) ![Jon Snow](./docs/monk-3.jpg) 
+>
+
 
 
 ## set()
@@ -72,11 +81,13 @@ reflex.set("title", "Monkeys are awesome!")
 ```
 
 
+
 ## get()
 
 ```javascript
 const title = reflex.get("title")
 ```
+
 
 
 ## observe()
@@ -101,8 +112,9 @@ reflex.observe("title", (newValue, oldValue) => {
 <p is="reflex-p" text="titleUpperCase"></p>
 ```
 
-Awesome monkeys!
-AWESOME MONKEYS!
+> Awesome monkeys!
+> AWESOME MONKEYS!
+
 
 
 ## License
