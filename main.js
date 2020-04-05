@@ -42,11 +42,11 @@ reflex.observe("posts", () => {
 //   { immediate: true }
 // )
 
-// reflex.observe(
-//   "title",
-//   (newValue) => reflex.set("titleUpper", newValue.toUpperCase()),
-//   { immediate: true }
-// )
+reflex.observe(
+  "title",
+  (newValue) => reflex.set("titleUpper", newValue.toUpperCase()),
+  { immediate: true }
+)
 
 // ["title", "photo"].forEach((path) =>
   

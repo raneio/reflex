@@ -17,7 +17,7 @@
 
     <button is="reflex-button" :class="title">Foobar</button>
 
-    <img is="reflex-img" :src="photo" alt="">
+    <img is="reflex-img" :src="photo" :alt="title">
     
     <article is="reflex-article" for="post in fivePosts">
       <h2><a is="reflex-a" :href="post.link" text="post.title.rendered"></a></h2>

@@ -20,7 +20,7 @@ export default class {
 
     if (_keys.length > 1) {
       this.set(path, value, _keys.slice(1), _obj[_keys[0]]);
-    } else {
+    } else if (value !== _obj[_keys[0]]) {
       const oldValue = _obj[_keys[0]];
       _obj[_keys[0]] = value;
       this.runObserver(path, value, oldValue);
