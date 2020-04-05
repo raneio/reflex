@@ -13,6 +13,7 @@ window.reflex = new Reflex({
   elements: ["h3", "div", "img", "input"],
   state: {
     title: "Awesome monkeys!",
+    titleUpperCase: "",
     subtitle: "Everyone <strong>loves</strong> monkeys.",
     animals: [
       {
@@ -84,14 +85,6 @@ const title = reflex.get("title");
 ## observe()
 
 ```javascript
-window.reflex = new Reflex({
-  elements: ["p"],
-  state: {
-    title: "Awesome monkeys!",
-    titleUpperCase: "",
-  },
-});
-
 reflex.observe(
   "title",
   (newValue, oldValue) => {
@@ -103,8 +96,8 @@ reflex.observe(
 ```
 
 ```html
-<p is="reflex-p" text="title"></p>
-<p is="reflex-p" text="titleUpperCase"></p>
+<div is="reflex-div" text="title"></div>
+<div is="reflex-div" text="titleUpperCase"></div>
 ```
 
 > Awesome monkeys!  
