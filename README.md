@@ -2,8 +2,7 @@
 
 Reactive HTML like Vue and React, but just **1 kilobyte**. Reflex is based on web components – more precisely customized built-in elements.
 
-
-
+---
 
 ## Get started
 
@@ -29,8 +28,7 @@ window.reflex = new Reflex({
 });
 ```
 
-
-
+---
 
 ## text / html
 
@@ -43,8 +41,7 @@ window.reflex = new Reflex({
 
 Everyone **loves** monkeys.
 
-
-
+---
 
 ## :attribute
 
@@ -54,8 +51,7 @@ Everyone **loves** monkeys.
 
 ![Monk](./docs/monk-1.jpg) 
 
-
-
+---
 
 ## for
 
@@ -67,8 +63,7 @@ Everyone **loves** monkeys.
 
 ![Monk](./docs/monk-1.jpg) ![Twins](./docs/monk-2.jpg) ![Jon Snow](./docs/monk-3.jpg) 
 
-
-
+---
 
 ## set()
 
@@ -80,8 +75,7 @@ reflex.set("title", "Monkeys are awesome!")
 <input is="reflex-input" :value="title" oninput="reflex.set(this.path.value, this.value)">
 ```
 
-
-
+---
 
 ## get()
 
@@ -89,8 +83,7 @@ reflex.set("title", "Monkeys are awesome!")
 const title = reflex.get("title")
 ```
 
-
-
+---
 
 ## observe()
 
@@ -117,8 +110,7 @@ reflex.observe("title", (newValue, oldValue) => {
 Awesome monkeys!
 AWESOME MONKEYS!
 
-
-
+---
 
 ## License
 
