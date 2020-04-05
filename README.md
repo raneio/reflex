@@ -100,8 +100,8 @@ reflex.observe(
 <div is="reflex-div" text="titleUpperCase"></div>
 ```
 
-> Awesome monkeys!  
-> AWESOME MONKEYS!
+> Monkeys are awesome!  
+> MONKEYS ARE AWESOME!
 
 ## License
 
