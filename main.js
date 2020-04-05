@@ -3,7 +3,7 @@
 import Reflex from "./Reflex.js";
 
 window.reflex = new Reflex({
-  elements: ["h3", "div", "img", "input"],
+  elements: ["h1", "div", "img", "input"],
   state: {
     title: "Awesome monkeys!",
     titleUpperCase: "",
@@ -30,7 +30,6 @@ reflex.set("title", "Monkeys are awesome!");
 reflex.observe(
   "title",
   (newValue, oldValue) => {
-    console.log(`The title has been changed from ${oldValue} to ${newValue}.`);
     reflex.set("titleUpperCase", newValue.toUpperCase());
   },
   { immediate: true }

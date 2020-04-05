@@ -88,7 +88,6 @@ const title = reflex.get("title");
 reflex.observe(
   "title",
   (newValue, oldValue) => {
-    console.log(`The title has been changed from ${oldValue} to ${newValue}.`);
     reflex.set("titleUpperCase", newValue.toUpperCase());
   },
   { immediate: true }

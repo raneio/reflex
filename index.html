@@ -3,23 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>REFLEX Example</title>
+    <!-- Polyfill for Safari -->
     <script src="//unpkg.com/@ungap/custom-elements-builtin"></script>
     <script src="./main.js" type="module"></script>
   </head>
   <body>
     <header>
+      <h1 is="reflex-h1" text="title"></h1>
+
+      <div is="reflex-div" text="titleUpperCase"></div>
+      <div is="reflex-div" html="subtitle"></div>
+
       <input
         is="reflex-input"
         :value="title"
         oninput="reflex.set(this.path.value, this.value)"
         style="width: 200px;"
       />
-
-      <h3 is="reflex-h3" text="title"></h3>
-      <h3 is="reflex-h3" text="titleUpperCase"></h3>
-      
-      <div is="reflex-div" html="subtitle"></div>
       
     </header>
 
@@ -29,5 +30,13 @@
       <img is="reflex-img" :src="animal.photo" :alt="animal.name">
       <div is="reflex-div" text="animal.name"></div>
     </div>
+
+    
+
+    <footer>
+      <hr>
+      <h2><a href="https://github.com/raneio/reflex">GITHUB (documentation)</a> </h2>
+      <p>MIT / Copyright 2020, Rane Ahonen, <a href="https://rane.io/">Rane.io</a></p>
+    </footer>
   </body>
 </html>
