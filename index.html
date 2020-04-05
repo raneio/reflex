@@ -8,8 +8,12 @@
     <script src="./main.js" type="module"></script>
   </head>
   <body>
-    <h1 is="reflex-h1" text="title" contenteditable="true" oninput="set(this.path, this.textContent)"></h1>
-    <input is="reflex-input" :value="title" oninput="set(this.path, this.value)"></input>
+    <!-- <button onclick="reflex._state.foo = 'foo'">TEST</button> -->
+
+    <h1 is="reflex-h1" text="title" contenteditable="true" oninput="reflex.set(this.path.text, this.textContent)"></h1>
+    <h1 is="reflex-h1" text="titleUpper"></h1>
+    <input is="reflex-input" :value="title" oninput="reflex.set(this.path.value, this.value)"></input>
+    <input is="reflex-input" :value="photo" oninput="reflex.set(this.path.value, this.value)"></input>
 
     <button is="reflex-button" :class="title">Foobar</button>
 
@@ -17,8 +21,8 @@
     
     <article is="reflex-article" for="post in fivePosts">
       <h2><a is="reflex-a" :href="post.link" text="post.title.rendered"></a></h2>
-      <input is="reflex-input" :value="post.title.rendered" oninput="set(this.path, this.value)"></input>
-      <main is="reflex-main" html="post.content.rendered"></main>
+      <input is="reflex-input" :value="post.title.rendered" oninput="reflex.set(this.path.value, this.value)"></input>
+      <!-- <main is="reflex-main" html="post.content.rendered"></main> -->
       <hr />
     </article>
   </body>
