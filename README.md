@@ -112,7 +112,7 @@ reflex.observe("title", (newValue, oldValue) => {
 <p is="reflex-p" text="titleUpperCase"></p>
 ```
 
-> Awesome monkeys!
+> Awesome monkeys!  
 > AWESOME MONKEYS!
 
   
