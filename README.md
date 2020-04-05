@@ -36,7 +36,7 @@ window.reflex = new Reflex({
 ## text / html
 
 ```html
-<h3 is="reflex-h1" text="title"></h3>
+<h3 is="reflex-h3" text="title"></h3>
 <div is="reflex-div" html="subtitle"></div>
 ```
 
