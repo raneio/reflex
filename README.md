@@ -4,91 +4,82 @@ Reflex adds reactivity to HTML. It works like [Vue](https://vuejs.org) and [Reac
 
 ---
 
-  
-
 ## Get started
 
 ```javascript
 import Reflex from "./Reflex.js";
 
 window.reflex = new Reflex({
-  elements: ["h3", "p", "div", "img"],
+  elements: ["h3", "div", "img", "input"],
   state: {
     title: "Awesome monkeys!",
     subtitle: "Everyone <strong>loves</strong> monkeys.",
-    animals: [{
-      name: "Monk",
-      photo: "./docs/monk-1.jpg"
-    },{
-      name: "Twins",
-      photo: "./docs/monk-2.jpg"
-    },{
-      name: "Jon Snow",
-      photo: "./docs/monk-3.jpg"
-    }],
-  }
+    animals: [
+      {
+        name: "Monk",
+        photo: "./docs/monk-1.jpg",
+      },
+      {
+        name: "Twins",
+        photo: "./docs/monk-2.jpg",
+      },
+      {
+        name: "Jon Snow",
+        photo: "./docs/monk-3.jpg",
+      },
+    ],
+  },
 });
 ```
-
-  
 
 ## text / html
 
 ```html
 <h3 is="reflex-h1" text="title"></h3>
-<p is="reflex-p" html="subtitle"></p>
+<div is="reflex-div" html="subtitle"></div>
 ```
 
 > ### Awesome monkeys!
 >
 > Everyone **loves** monkeys.
->
-
-  
 
 ## :attribute
 
 ```html
-<img is="reflex-img" :src="animals.0.photo" :alt="animals.0.name">
+<img is="reflex-img" :src="animals.0.photo" :alt="animals.0.name" />
 ```
 
-> ![Monk](./docs/monk-1.jpg) 
->
-
-  
+> ![Monk](./docs/monk-1.jpg)
 
 ## for
 
 ```html
 <div is="reflex-div" for="animal in animals">
-  <img is="reflex-img" :src="animal.photo" :alt="animal.name">
+  <img is="reflex-img" :src="animal.photo" :alt="animal.name" />
 </div>
 ```
 
-> ![Monk](./docs/monk-1.jpg) ![Twins](./docs/monk-2.jpg) ![Jon Snow](./docs/monk-3.jpg) 
->
-
-  
+> ![Monk](./docs/monk-1.jpg) ![Twins](./docs/monk-2.jpg) ![Jon Snow](./docs/monk-3.jpg)
 
 ## set()
 
 ```javascript
-reflex.set("title", "Monkeys are awesome!")
+reflex.set("title", "Monkeys are awesome!");
 ```
 
 ```html
-<input is="reflex-input" :value="title" oninput="reflex.set(this.path.value, this.value)">
+<input
+  is="reflex-input"
+  :value="title"
+  oninput="reflex.set(this.path.value, this.value)"
+/>
 ```
-
-  
 
 ## get()
 
 ```javascript
-const title = reflex.get("title")
+const title = reflex.get("title");
 ```
-
-  
 
 ## observe()
 
@@ -97,14 +88,18 @@ window.reflex = new Reflex({
   elements: ["p"],
   state: {
     title: "Awesome monkeys!",
-    titleUpperCase: ""
-  }
+    titleUpperCase: "",
+  },
 });
 
-reflex.observe("title", (newValue, oldValue) => {
-  console.log(`The title has been changed from ${oldValue} to ${newValue}.`);
-  reflex.set("titleUppercase", newValue.toUpperCase())
-}, {immediate: true});
+reflex.observe(
+  "title",
+  (newValue, oldValue) => {
+    console.log(`The title has been changed from ${oldValue} to ${newValue}.`);
+    reflex.set("titleUpperCase", newValue.toUpperCase());
+  },
+  { immediate: true }
+);
 ```
 
 ```html
@@ -114,8 +109,6 @@ reflex.observe("title", (newValue, oldValue) => {
 
 > Awesome monkeys!
 > AWESOME MONKEYS!
-
-  
 
 ## License
 

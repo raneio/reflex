@@ -8,22 +8,24 @@
     <script src="./main.js" type="module"></script>
   </head>
   <body>
-    <!-- <button onclick="reflex._state.foo = 'foo'">TEST</button> -->
+    <header>
+      <input
+        is="reflex-input"
+        :value="title"
+        oninput="reflex.set(this.path.value, this.value)"
+        style="width: 200px;"
+      />
 
-    <h1 is="reflex-h1" text="title" contenteditable="true" oninput="reflex.set(this.path.text, this.textContent)"></h1>
-    <h1 is="reflex-h1" text="titleUpper"></h1>
-    <input is="reflex-input" :value="title" oninput="reflex.set(this.path.value, this.value)"></input>
-    <input is="reflex-input" :value="photo" oninput="reflex.set(this.path.value, this.value)"></input>
+      <h3 is="reflex-h3" text="title"></h3>
+      <h3 is="reflex-h3" text="titleUpperCase"></h3>
+      
+      <div is="reflex-div" html="subtitle"></div>
+      
+    </header>
 
-    <button is="reflex-button" :class="title">Foobar</button>
-
-    <img is="reflex-img" :src="photo" :alt="title">
-    
-    <article is="reflex-article" for="post in fivePosts">
-      <h2><a is="reflex-a" :href="post.link" text="post.title.rendered"></a></h2>
-      <input is="reflex-input" :value="post.title.rendered" oninput="reflex.set(this.path.value, this.value)"></input>
-      <!-- <main is="reflex-main" html="post.content.rendered"></main> -->
-      <hr />
-    </article>
+    <div is="reflex-div" for="animal in animals">
+      <img is="reflex-img" :src="animal.photo" :alt="animal.name">
+      <div is="reflex-div" text="animal.name"></div>
+    </div>
   </body>
 </html>

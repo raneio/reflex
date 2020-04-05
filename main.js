@@ -1,66 +1,37 @@
 "use strict";
 
 import Reflex from "./Reflex.js";
-import state from "./state.js";
-
-// const storage = JSON.parse(localStorage.getItem("reflex"));
-// if (storage) {
-//   state.name = storage.name;
-// }
 
 window.reflex = new Reflex({
-  elements: [
-    "div",
-    "span",
-    "img",
-    "article",
-    "h1",
-    "h2",
-    "main",
-    "button",
-    "input",
-    "a",
-  ],
+  elements: ["h3", "div", "img", "input"],
   state: {
-    title: "Api test",
-    titleUpper: null,
-    photo: "https://picsum.photos/id/237/200/300",
-    posts: [],
-    fivePosts: [],
-    true: true,
-    false: false,
+    title: "Awesome monkeys!",
+    titleUpperCase: "",
+    subtitle: "Everyone <strong>loves</strong> monkeys.",
+    animals: [
+      {
+        name: "Monk",
+        photo: "./docs/monk-1.jpg",
+      },
+      {
+        name: "Twins",
+        photo: "./docs/monk-2.jpg",
+      },
+      {
+        name: "Jon Snow",
+        photo: "./docs/monk-3.jpg",
+      },
+    ],
   },
 });
 
-reflex.observe("posts", () => {
-  reflex.set("fivePosts", reflex.state.posts.slice(0, 5));
-});
-
-// reflex.observe(
-//   "photo",
-//   (newValue) => reflex.set("titleUpper", newValue.toUpperCase()),
-//   { immediate: true }
-// )
+reflex.set("title", "Monkeys are awesome!");
 
 reflex.observe(
   "title",
-  (newValue) => reflex.set("titleUpper", newValue.toUpperCase()),
+  (newValue, oldValue) => {
+    console.log(`The title has been changed from ${oldValue} to ${newValue}.`);
+    reflex.set("titleUpperCase", newValue.toUpperCase());
+  },
   { immediate: true }
-)
-
-// ["title", "photo"].forEach((path) =>
-  
-// );
-
-// Fetch blog posts
-fetch("https://www.wpkube.com/wp-json/wp/v2/posts")
-  .then((raw) => raw.json())
-  .then((response) => {
-    reflex.set("posts", response);
-  });
-
-// window.set = (path, value) => {
-//   console.log(path, value);
-//   reflex.set(path, value);
-//   localStorage.setItem("reflex", JSON.stringify(reflex.state));
-// };
+);
