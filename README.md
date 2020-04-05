@@ -1,6 +1,6 @@
 # REFLEX
 
-Reflex adds reactivity to HTML. It works like [Vue](https://vuejs.org) and [React](https://reactjs.org/), but the Reflex filesize is only **1 kilobyte**. Reflex is based on web components – more precisely customized built-in elements.
+Reflex adds reactivity to HTML. It works like [Vue](https://vuejs.org) and [React](https://reactjs.org/), but the Reflex filesize is only **1 kilobyte** (min+gzip). Reflex is based on web components – more precisely customized built-in elements.
 
 ---
 
@@ -107,7 +107,7 @@ reflex.observe(
 <p is="reflex-p" text="titleUpperCase"></p>
 ```
 
-> Awesome monkeys!
+> Awesome monkeys!  
 > AWESOME MONKEYS!
 
 ## License
