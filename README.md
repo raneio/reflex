@@ -20,15 +20,15 @@ window.reflex = new Reflex({
     animals: [
       {
         name: "Monk",
-        photo: "./docs/monk-1.jpg",
+        photo: "https://source.unsplash.com/Z05GiksmqYU/150x150"
       },
       {
         name: "Twins",
-        photo: "./docs/monk-2.jpg",
+        photo: "https://source.unsplash.com/aXqlZFeVFrU/150x150"
       },
       {
         name: "Jon Snow",
-        photo: "./docs/monk-3.jpg",
+        photo: "https://source.unsplash.com/iJ7cD_VocxE/150x150"
       },
     ],
   },
