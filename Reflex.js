@@ -1,6 +1,6 @@
 "use strict";
 
-export  default class Reflex {
+export default class Reflex {
   constructor(config) {
     this.state = config.state;
     this.observer = {};

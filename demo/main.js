@@ -1,6 +1,6 @@
 "use strict";
 
-import Reflex from "./Reflex.js";
+import Reflex from "../Reflex.js";
 
 window.reflex = new Reflex({
   elements: ["h1", "div", "img", "input"],
