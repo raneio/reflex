@@ -1,0 +1,16 @@
+{
+  "name": "reflex",
+  "version": "1.0.0",
+  "description": "Reflex adds reactivity to build-in HTML elements. ",
+  "main": "Reflex.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raneio/reflex.git"
+  },
+  "author": "Rane Ahonen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raneio/reflex/issues"
+  },
+  "homepage": "https://github.com/raneio/reflex#readme"
+}
