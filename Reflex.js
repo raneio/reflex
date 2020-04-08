@@ -83,9 +83,15 @@ export default class Reflex {
           render() {
             this.bindAttributes.forEach(({ name }) => {
               const path = this.path[name.replace(":", "")];
-              const value = this.reflex.get(path, this);
+              const value = path.startsWith("#")
+                ? this.closest(
+                    `[for^="${path.replace("#", "")} in "], ` +
+                      `[_for^="${path.replace("#", "")} in "]`
+                  )._index
+                : this.reflex.get(path);
 
               if (name === "for" || name === "_for") {
+                this._index = 0;
                 this._renderChilds(this);
 
                 while (this.nextSibling._index > 0) {
@@ -116,7 +122,7 @@ export default class Reflex {
                   (c === "<" && a < b) ||
                   (c === ">" && a > b) ||
                   (c === "<=" && a <= b) ||
-                  (c === ">=" && a >= b)  
+                  (c === ">=" && a >= b)
                 );
               } else if (name === "text" && this.textContent !== value) {
                 this.textContent = value;
@@ -142,11 +148,11 @@ export default class Reflex {
             this.path = {};
             this.bindAttributes.forEach(({ name, value: path }) => {
               if (name === "for" || name === "_for") {
-                path = path.split(" in ")[1]
+                path = path.split(" in ")[1];
               }
 
               if (name === "if") {
-                path = path.split(" ")[0]
+                path = path.split(" ")[0];
               }
 
               const getParents = (el, _parents = []) => {
@@ -167,7 +173,7 @@ export default class Reflex {
               }
 
               parents.forEach((parent) => {
-                const index = parent._index || 0;
+                const index = parent._index;
                 const [item, source] = parent.hasAttribute("for")
                   ? parent.getAttribute("for").split(" in ")
                   : parent.getAttribute("_for").split(" in ");

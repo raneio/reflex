@@ -21,29 +21,24 @@
         oninput="reflex.set(this.path.value, this.value)"
         style="width: 200px;"
       />
-      
     </header>
 
-    <hr>
-
-    <div is="reflex-div" for="todo in todos" if="show == 3">
-      <div is="reflex-div" text="todo"></div>
-      <button>Remove</button>
-    </div>
-
-    <hr>
+    <hr />
 
     <div is="reflex-div" for="animal in animals">
-      <!-- <img is="reflex-img" :src="animal.photo" :alt="animal.name"> -->
+      <img is="reflex-img" :src="animal.photo" :alt="animal.name" />
       <div is="reflex-div" text="animal.name"></div>
     </div>
 
-    
-
     <footer>
-      <hr>
-      <h2><a href="https://github.com/raneio/reflex">GITHUB (documentation)</a> </h2>
-      <p>MIT / Copyright 2020, Rane Ahonen, <a href="https://rane.io/">Rane.io</a></p>
+      <hr />
+      <h2>
+        <a href="https://github.com/raneio/reflex">GITHUB (documentation)</a>
+      </h2>
+      <p>
+        MIT / Copyright 2020, Rane Ahonen,
+        <a href="https://rane.io/">Rane.io</a>
+      </p>
     </footer>
   </body>
 </html>
