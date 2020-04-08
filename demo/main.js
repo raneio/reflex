@@ -8,6 +8,8 @@ window.reflex = new Reflex({
     title: "Awesome monkeys!",
     titleUpperCase: "",
     subtitle: "Everyone <strong>loves</strong> monkeys.",
+    show: 3,
+    todos: ["foo", "bar"],
     animals: [
       {
         name: "Monk",

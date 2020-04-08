@@ -62,6 +62,7 @@ export default class Reflex {
               ({ name }) =>
                 name.startsWith(":") ||
                 name === "for" ||
+                name === "if" ||
                 name === "text" ||
                 name === "html"
             );
@@ -103,6 +104,20 @@ export default class Reflex {
                 } else {
                   this.hidden = true;
                 }
+              } else if (name === "if") {
+                const a = value;
+                const b = this.getAttribute("if").split(" ")[2];
+                const c = this.getAttribute("if").split(" ")[1];
+
+                this.hidden = !(
+                  (!b && !c && a) ||
+                  (c === "==" && a == b) ||
+                  (c === "!=" && a != b) ||
+                  (c === "<" && a < b) ||
+                  (c === ">" && a > b) ||
+                  (c === "<=" && a <= b) ||
+                  (c === ">=" && a >= b)  
+                );
               } else if (name === "text" && this.textContent !== value) {
                 this.textContent = value;
               } else if (name === "html" && this.innerHTML !== value) {
@@ -125,11 +140,14 @@ export default class Reflex {
 
           _setPaths() {
             this.path = {};
-            this.bindAttributes.forEach(({ name, value }) => {
-              let path =
-                name === "for" || name === "_for"
-                  ? value.split(" in ")[1]
-                  : value;
+            this.bindAttributes.forEach(({ name, value: path }) => {
+              if (name === "for" || name === "_for") {
+                path = path.split(" in ")[1]
+              }
+
+              if (name === "if") {
+                path = path.split(" ")[0]
+              }
 
               const getParents = (el, _parents = []) => {
                 const closestEl =

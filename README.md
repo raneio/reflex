@@ -17,6 +17,7 @@ window.reflex = new Reflex({
     title: "Awesome monkeys!",
     titleUpperCase: "",
     subtitle: "Everyone <strong>loves</strong> monkeys.",
+    showExample: 3,
     animals: [
       {
         name: "Monk",
@@ -63,6 +64,16 @@ window.reflex = new Reflex({
 ```
 
 > ![Monk](https://source.unsplash.com/Z05GiksmqYU/150x150) ![Twins](https://source.unsplash.com/aXqlZFeVFrU/150x150) ![Jon Snow](https://source.unsplash.com/iJ7cD_VocxE/150x150)
+
+## if
+
+```html
+<div is="reflex-div" if="showExample"></div>
+<div is="reflex-div" if="showExample == 3"></div>
+<div is="reflex-div" if="showExample != foobar"></div>
+<div is="reflex-div" if="showExample > 2"></div>
+<div is="reflex-div" if="showExample <= 3"></div>
+```
 
 ## set()
 
