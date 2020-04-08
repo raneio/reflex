@@ -11,16 +11,16 @@ window.reflex = new Reflex({
     animals: [
       {
         name: "Monk",
-        photo: "https://source.unsplash.com/Z05GiksmqYU/150x150"
+        photo: "https://source.unsplash.com/Z05GiksmqYU/150x150",
       },
       {
         name: "Twins",
-        photo: "https://source.unsplash.com/aXqlZFeVFrU/150x150"
+        photo: "https://source.unsplash.com/aXqlZFeVFrU/150x150",
       },
       {
         name: "Jon Snow",
-        photo: "https://source.unsplash.com/iJ7cD_VocxE/150x150"
-      }
+        photo: "https://source.unsplash.com/iJ7cD_VocxE/150x150",
+      },
     ],
   },
 });
