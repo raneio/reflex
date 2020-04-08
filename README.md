@@ -20,15 +20,15 @@ window.reflex = new Reflex({
     animals: [
       {
         name: "Monk",
-        photo: "./docs/monk-1.jpg",
+        photo: "https://source.unsplash.com/Z05GiksmqYU/150x150"
       },
       {
         name: "Twins",
-        photo: "./docs/monk-2.jpg",
+        photo: "https://source.unsplash.com/aXqlZFeVFrU/150x150"
       },
       {
         name: "Jon Snow",
-        photo: "./docs/monk-3.jpg",
+        photo: "https://source.unsplash.com/iJ7cD_VocxE/150x150"
       },
     ],
   },
@@ -52,7 +52,7 @@ window.reflex = new Reflex({
 <img is="reflex-img" :src="animals.0.photo" :alt="animals.0.name" />
 ```
 
-> ![Monk](./docs/monk-1.jpg)
+> ![Monk](https://source.unsplash.com/Z05GiksmqYU/150x150)
 
 ## for
 
@@ -62,7 +62,7 @@ window.reflex = new Reflex({
 </div>
 ```
 
-> ![Monk](./docs/monk-1.jpg) ![Twins](./docs/monk-2.jpg) ![Jon Snow](./docs/monk-3.jpg)
+> ![Monk](https://source.unsplash.com/Z05GiksmqYU/150x150) ![Twins](https://source.unsplash.com/aXqlZFeVFrU/150x150) ![Jon Snow](https://source.unsplash.com/iJ7cD_VocxE/150x150)
 
 ## set()
 
