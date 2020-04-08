@@ -155,7 +155,7 @@ export default class Reflex {
                   : parent.getAttribute("_for").split(" in ");
 
                 path = path.replace(
-                  new RegExp(`(^|\\.)${item}(\\.)`),
+                  new RegExp(`(^|\\.)${item}(\\.|$)`),
                   `$1${source}.${index}$2`
                 );
               });
