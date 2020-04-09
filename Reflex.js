@@ -81,6 +81,8 @@ export default class Reflex {
           }
 
           render() {
+            let show = true;
+
             this.bindAttributes.forEach(({ name }) => {
               const path = this.path[name.replace(":", "")];
               const value = path.startsWith("#")
@@ -99,8 +101,6 @@ export default class Reflex {
                 }
 
                 if (value.length > 0 && this.orginalNode) {
-                  this.hidden = false;
-
                   for (let index = value.length - 1; index > 0; index--) {
                     const node = this.orginalNode.cloneNode(true);
                     node._index = index;
@@ -108,26 +108,35 @@ export default class Reflex {
                     this._renderChilds(node);
                   }
                 } else {
-                  this.hidden = true;
+                  show = false;
                 }
               } else if (name === "if") {
                 const a = value;
                 const b = this.getAttribute("if").split(" ")[2];
                 const c = this.getAttribute("if").split(" ")[1];
 
-                this.hidden = !(
-                  (!b && !c && a) ||
-                  (c === "==" && a == b) ||
-                  (c === "!=" && a != b) ||
-                  (c === "<" && a < b) ||
-                  (c === ">" && a > b) ||
-                  (c === "<=" && a <= b) ||
-                  (c === ">=" && a >= b)
-                );
+                if (
+                  !(
+                    (!b && !c && a) ||
+                    (c === "==" && a == b) ||
+                    (c === "!=" && a != b) ||
+                    (c === "<" && a < b) ||
+                    (c === ">" && a > b) ||
+                    (c === "<=" && a <= b) ||
+                    (c === ">=" && a >= b)
+                  )
+                ) {
+                  show = false;
+                }
               } else if (name === "text" && this.textContent !== value) {
                 this.textContent = value;
               } else if (name === "html" && this.innerHTML !== value) {
                 this.innerHTML = value;
+              } else if (name === ":class" || name === ":style") {
+                this.setAttribute(
+                  name.slice(1),
+                  this.getAttribute(name.slice(1)) + " " + value
+                );
               } else if (name.startsWith(":")) {
                 this.setAttribute(name.slice(1), value);
               }
@@ -136,6 +145,12 @@ export default class Reflex {
                 this.value = value;
               }
             });
+
+            if (show) {
+              this.style.removeProperty("display");
+            } else {
+              this.style.setProperty("display", "none");
+            }
           }
 
           _renderChilds(node) {

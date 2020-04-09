@@ -3,31 +3,15 @@
 import Reflex from "../Reflex.js";
 
 window.reflex = new Reflex({
-  elements: ["h1", "div", "img", "input"],
+  elements: ["span", "div", "input", "button"],
   state: {
-    title: "Awesome monkeys!",
+    title: "Reflex Todo",
     titleUpperCase: "",
-    subtitle: "Everyone <strong>loves</strong> monkeys.",
-    show: 3,
-    todos: ["foo", "bar"],
-    animals: [
-      {
-        name: "Monk",
-        photo: "https://source.unsplash.com/Z05GiksmqYU/150x150",
-      },
-      {
-        name: "Twins",
-        photo: "https://source.unsplash.com/aXqlZFeVFrU/150x150",
-      },
-      {
-        name: "Jon Snow",
-        photo: "https://source.unsplash.com/iJ7cD_VocxE/150x150",
-      },
-    ],
+    showTitleEdit: false,
+    newTask: "",
+    tasks: ["Buy bananas", "Hang on the tree", "Eat banana"],
   },
 });
-
-reflex.set("title", "Monkeys are awesome!");
 
 reflex.observe(
   "title",
@@ -36,3 +20,16 @@ reflex.observe(
   },
   { immediate: true }
 );
+
+window.addTask = () => {
+  const tasks = [...reflex.state.tasks, reflex.state.newTask];
+  reflex.set("tasks", tasks);
+  reflex.set("newTask", "");
+};
+
+window.removeTask = (index) => {
+  const tasks = reflex.state.tasks.filter(
+    (task, idx) => idx !== parseInt(index)
+  );
+  reflex.set("tasks", tasks);
+};

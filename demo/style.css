@@ -1,0 +1,57 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  width: 600px;
+  max-width: 90%;
+  margin: 30px auto;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.8em;
+}
+
+input {
+  padding: 5px;
+}
+
+button {
+  padding: 5px 15px;
+}
+
+header {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+h1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+footer {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #eeeeee;
+  font-size: 0.8rem;
+}
