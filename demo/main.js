@@ -5,7 +5,7 @@ import Reflex from "../Reflex.js";
 window.reflex = new Reflex({
   elements: ["span", "div", "input", "button"],
   state: {
-    title: "Reflex Todo",
+    title: "Reflex Demo",
     titleUpperCase: "",
     showTitleEdit: false,
     newTask: "",

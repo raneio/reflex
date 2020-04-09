@@ -21,15 +21,15 @@ window.reflex = new Reflex({
     animals: [
       {
         name: "Monk",
-        photo: "https://source.unsplash.com/Z05GiksmqYU/150x150"
+        photo: "https://source.unsplash.com/Z05GiksmqYU/150x150",
       },
       {
         name: "Twins",
-        photo: "https://source.unsplash.com/aXqlZFeVFrU/150x150"
+        photo: "https://source.unsplash.com/aXqlZFeVFrU/150x150",
       },
       {
         name: "Jon Snow",
-        photo: "https://source.unsplash.com/iJ7cD_VocxE/150x150"
+        photo: "https://source.unsplash.com/iJ7cD_VocxE/150x150",
       },
     ],
   },
@@ -59,7 +59,12 @@ window.reflex = new Reflex({
 
 ```html
 <div is="reflex-div" for="animal in animals">
-  <img is="reflex-img" :src="animal.photo" :alt="animal.name" :data-index="#animal" />
+  <img
+    is="reflex-img"
+    :src="animal.photo"
+    :alt="animal.name"
+    :data-index="#animal"
+  />
 </div>
 ```
 
