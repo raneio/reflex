@@ -6,10 +6,22 @@ Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vu
 
 ---
 
+## Install
+
+```shell
+npm install @raneio/reflex
+```
+
+or
+
+```html
+<script src="//unpkg.com/@raneio/reflex"></script>
+```
+
 ## Get started
 
 ```javascript
-import Reflex from "./Reflex.js";
+import Reflex from "@raneio/reflex"; // or use script tag
 
 window.reflex = new Reflex({
   elements: ["h3", "div", "img", "input"],
