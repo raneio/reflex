@@ -9,8 +9,8 @@ window.reflex = new Reflex({
     titleUpperCase: "",
     showTitleEdit: false,
     newTask: "",
-    tasks: ["Buy bananas", "Hang on the tree", "Eat banana"],
-  },
+    tasks: ["Buy bananas", "Hang on the tree", "Eat banana"]
+  }
 });
 
 reflex.observe(
@@ -21,8 +21,9 @@ reflex.observe(
   { immediate: true }
 );
 
-window.addTask = () => {
-  const tasks = [...reflex.state.tasks, reflex.state.newTask];
+window.addTask = (even) => {
+  event.preventDefault();
+  const tasks = [reflex.state.newTask, ...reflex.state.tasks];
   reflex.set("tasks", tasks);
   reflex.set("newTask", "");
 };
