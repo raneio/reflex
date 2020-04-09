@@ -59,7 +59,7 @@ window.reflex = new Reflex({
 
 ```html
 <div is="reflex-div" for="animal in animals">
-  <img is="reflex-img" :src="animal.photo" :alt="animal.name" />
+  <img is="reflex-img" :src="animal.photo" :alt="animal.name" :data-index="#animal" />
 </div>
 ```
 
