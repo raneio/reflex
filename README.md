@@ -8,7 +8,7 @@ Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vu
 - Minimalistic API
 - Global state *(get and set data easily at the site wide)*
 - No CLI
-- No compailer
+- No compiler
 - No virtual DOM
 - No non standard components *(use [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components))*
 
