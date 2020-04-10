@@ -38,7 +38,7 @@ window.reflex = new Reflex({
     title: "Awesome monkeys!",
     titleUpperCase: "",
     subtitle: "Everyone <strong>loves</strong> monkeys.",
-    showExample: 3,
+    showExample: true,
     animals: [
       {
         name: "Monk",
@@ -95,10 +95,6 @@ window.reflex = new Reflex({
 
 ```html
 <div is="reflex-div" if="showExample"></div>
-<div is="reflex-div" if="showExample == 3"></div>
-<div is="reflex-div" if="showExample != foobar"></div>
-<div is="reflex-div" if="showExample > 2"></div>
-<div is="reflex-div" if="showExample <= 3"></div>
 ```
 
 ## set()

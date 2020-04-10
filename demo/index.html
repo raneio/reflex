@@ -7,33 +7,61 @@
     <!-- Polyfill for Safari -->
     <script src="//unpkg.com/@ungap/custom-elements-builtin"></script>
     <script src="./main.js" type="module"></script>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <header>
       <h1>
         <span is="reflex-span" text="titleUpperCase"></span>
-        <input is="reflex-input" :value="title" oninput="reflex.set(this.path.value, this.value)" />
+        <input
+          is="reflex-input"
+          :value="title"
+          oninput="reflex.set(this.path.value, this.value)"
+        />
       </h1>
-    
+
       <form>
         <h4>Add new task</h4>
-        <input is="reflex-input" :value="newTask" oninput="reflex.set(this.path.value, this.value)"/>
-        <button onclick="addTask()">Add</button>
+        <input
+          is="reflex-input"
+          :value="newTask"
+          oninput="reflex.set(this.path.value, this.value)"
+          autofocus
+        />
+        <button
+          is="reflex-button"
+          onclick="addTask()"
+          :disabled="disableAddButton"
+        >
+          Add
+        </button>
       </form>
     </header>
-    
+
     <main>
       <div is="reflex-div" for="task in tasks" class="task">
         <div is="reflex-div" text="task"></div>
-        <button is="reflex-button" onclick="removeTask(this.dataset.index)" :data-index="#task">×</button>
+        <button
+          is="reflex-button"
+          onclick="removeTask(this.dataset.index)"
+          :data-index="#task"
+        >
+          ×
+        </button>
       </div>
     </main>
-    
+
     <footer>
-      <h3><a href="https://github.com/raneio/reflex" target="_blank">REFLEX ON GITHUB</a> </h3>
+      <h3>
+        <a href="https://github.com/raneio/reflex" target="_blank"
+          >REFLEX ON GITHUB</a
+        >
+      </h3>
       <p>License MIT</p>
-      <p>Copyright 2020, Rane Ahonen <a href="https://rane.io/" target="_blank">Rane.io</a></p>
+      <p>
+        Copyright 2020, Rane Ahonen
+        <a href="https://rane.io/" target="_blank">Rane.io</a>
+      </p>
     </footer>
   </body>
 </html>

@@ -2,6 +2,7 @@
 
 export default class Reflex {
   constructor(config) {
+    this.prefix = config.prefix || 'reflex';
     this.state = config.state;
     this.observer = {};
     const tags =
@@ -51,15 +52,15 @@ export default class Reflex {
     const reflex = this;
     tags.forEach((tag) => {
       customElements.define(
-        `reflex-${tag}`,
+        `${reflex.prefix}-${tag}`,
         class extends document.createElement(tag).constructor {
           constructor() {
             super();
             this.reflex = reflex;
 
-            const validName = `reflex-${this.nodeName.toLowerCase()}`;
+            const validName = `${reflex.prefix}-${this.nodeName.toLowerCase()}`;
             if (this.getAttribute("is") !== validName) {
-              console.error(`Chance to is="reflex-${validName}"`, this);
+              console.error(`Chance to is="${reflex.prefix}-${validName}"`, this);
             }
           }
 
@@ -116,39 +117,29 @@ export default class Reflex {
                 } else {
                   show = false;
                 }
-              } else if (name === "if") {
-                const a = value;
-                const b = this.getAttribute("if").split(" ")[2];
-                const c = this.getAttribute("if").split(" ")[1];
-
-                if (
-                  !(
-                    (!b && !c && a) ||
-                    (c === "==" && a == b) ||
-                    (c === "!=" && a != b) ||
-                    (c === "<" && a < b) ||
-                    (c === ">" && a > b) ||
-                    (c === "<=" && a <= b) ||
-                    (c === ">=" && a >= b)
-                  )
-                ) {
-                  show = false;
-                }
+              } else if (name === "if" && !value) {
+                show = false;
               } else if (name === "text" && this.textContent !== value) {
                 this.textContent = value;
               } else if (name === "html" && this.innerHTML !== value) {
                 this.innerHTML = value;
-              } else if (name === ":class" || name === ":style") {
-                this.setAttribute(
-                  name.slice(1),
-                  this.getAttribute(name.slice(1)) + " " + value
-                );
               } else if (name.startsWith(":")) {
-                this.setAttribute(name.slice(1), value);
+                if (value === false) {
+                  this.removeAttribute(name.slice(1));
+                } else if (value === true) {
+                  this.setAttribute(name.slice(1), "");
+                } else if (name === ":class" || name === ":style") {
+                  this.setAttribute(
+                    name.slice(1),
+                    this.getAttribute(name.slice(1)) + " " + value
+                  );
+                } else {
+                  this.setAttribute(name.slice(1), value);
+                }
               }
 
-              if (name === ":value" && this.value !== value) {
-                this.value = value;
+              if (this[name.slice(1)] !== value) {
+                this[name.slice(1)] = value;
               }
             });
 
@@ -161,7 +152,7 @@ export default class Reflex {
 
           _renderChilds(node) {
             node
-              .querySelectorAll("[is^='reflex-'")
+              .querySelectorAll(`[is^='${reflex.prefix}-'`)
               .forEach((childNode) => childNode.render && childNode.render());
           }
 
