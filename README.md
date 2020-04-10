@@ -2,8 +2,6 @@
 
 Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vuejs.org) and [React](https://reactjs.org/), but the Reflex filesize is **less than 2kb** (min+gzip). Reflex is based on web components – more precisely customized built-in elements.
 
-**DEMO: https://codepen.io/raneio/full/bGVbrLw**
-
 **Why Reflex?**
 
 - Light, fast and simple
@@ -13,6 +11,8 @@ Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vu
 - No compailer
 - No virtual DOM
 - No non standard components *(use [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components))*
+
+**DEMO: https://codepen.io/raneio/full/bGVbrLw**
 
 ---
 
