@@ -1,8 +1,18 @@
 # REFLEX
 
-Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vuejs.org) and [React](https://reactjs.org/), but the Reflex filesize is only **1 kilobyte** (min+gzip). Reflex is based on web components – more precisely customized built-in elements.
+Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vuejs.org) and [React](https://reactjs.org/), but the Reflex filesize is less than **2 kilobyte** (min+gzip). Reflex is based on web components – more precisely customized built-in elements.
 
 **DEMO: https://codepen.io/raneio/full/bGVbrLw**
+
+**Why Reflex?**
+
+- Light, fast and simple
+- Minimalistic API
+- Global state *(get and set data easily at the site wide)*
+- No CLI
+- No compailer
+- No virtual DOM
+- No non standard components *(use [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components))*
 
 ---
 
@@ -24,7 +34,6 @@ or
 import Reflex from "@raneio/reflex"; // or use script tag
 
 window.reflex = new Reflex({
-  elements: ["h3", "div", "img", "input"],
   state: {
     title: "Awesome monkeys!",
     titleUpperCase: "",
@@ -65,7 +74,7 @@ window.reflex = new Reflex({
 <img is="reflex-img" :src="animals.0.photo" :alt="animals.0.name" />
 ```
 
-> ![Monk](https://source.unsplash.com/Z05GiksmqYU/150x150)
+> ![Monk](https://source.unsplash.com/Z05GiksmqYU/150x150) 
 
 ## for
 

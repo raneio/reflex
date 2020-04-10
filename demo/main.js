@@ -3,13 +3,12 @@
 import Reflex from "../Reflex.js";
 
 window.reflex = new Reflex({
-  elements: ["span", "div", "input", "button"],
   state: {
     title: "Reflex Demo",
     titleUpperCase: "",
     showTitleEdit: false,
     newTask: "",
-    tasks: ["Buy bananas", "Hang on the tree", "Eat banana"]
+    tasks: ["Buy bananas", "Hanging on a tree", "Eat a banana"]
   }
 });
 
