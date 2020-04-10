@@ -57,14 +57,14 @@ export default class Reflex {
           constructor() {
             super();
             this.reflex = reflex;
+          }
 
+          connectedCallback() {
             const validName = `${reflex.prefix}-${this.nodeName.toLowerCase()}`;
             if (this.getAttribute("is") !== validName) {
               console.error(`Chance to is="${reflex.prefix}-${validName}"`, this);
             }
-          }
 
-          connectedCallback() {
             this.bindAttributes = Array.from(this.attributes).filter(
               ({ name }) =>
                 name.startsWith(":") ||
