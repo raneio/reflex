@@ -38,7 +38,6 @@ window.addTask = (even) => {
 };
 
 window.removeTask = (index) => {
-  console.log('removeTask', index)
   const tasks = reflex.state.tasks.filter(
     (task, idx) => idx !== parseInt(index)
   );
