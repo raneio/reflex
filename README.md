@@ -35,7 +35,6 @@ or
 import Reflex from "@raneio/reflex"; // or use script tag
 
 window.reflex = new Reflex({
-  prefix: "reflex",
   elements: ["h3", "div", "img", "input"],
   state: {
     title: "Awesome monkeys!",
