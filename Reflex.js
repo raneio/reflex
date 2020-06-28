@@ -1,13 +1,10 @@
 "use strict";
 
 export default class Reflex {
-  constructor(config) {
-    this.prefix = config.prefix || 'reflex';
-    this.state = config.state;
+  constructor({ state, elements = [] }) {
+    this.state = state;
     this.observer = {};
-    const tags =
-      "a,abbr,address,area,article,aside,audio,b,base,bdi,bdo,blockquote,body,br,button,canvas,caption,cite,code,col,colgroup,data,datalist,dd,del,details,dfn,dialog,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,i,iframe,img,input,ins,kbd,label,legend,li,link,main,map,mark,menu,meta,meter,nav,noscript,object,ol,optgroup,option,output,p,param,picture,pre,progress,q,rp,rt,ruby,s,samp,script,section,select,slot,small,source,span,strong,style,sub,summary,sup,table,tbody,td,template,textarea,tfoot,th,thead,time,title,tr,track,u,ul,var,video,wbr";
-    this.define(config.tags || tags.split(","));
+    this.define(elements);
   }
 
   get(path) {
@@ -30,15 +27,15 @@ export default class Reflex {
     }
   }
 
-  observe(path, fn, config = {}) {
+  observe({ path, handler, immediate }) {
     if (!this.observer[path]) {
       this.observer[path] = [];
     }
 
-    this.observer[path].push(fn);
+    this.observer[path].push(handler);
 
-    if (config.immediate) {
-      fn(this.get(path));
+    if (immediate) {
+      handler(this.get(path));
     }
   }
 
@@ -48,11 +45,12 @@ export default class Reflex {
     }
   }
 
-  define(tags) {
+  define(elements) {
     const reflex = this;
-    tags.forEach((tag) => {
+    elements.forEach((tag) => {
+      console.log(`x-${tag}`);
       customElements.define(
-        `${reflex.prefix}-${tag}`,
+        `x-${tag}`,
         class extends document.createElement(tag).constructor {
           constructor() {
             super();
@@ -60,16 +58,16 @@ export default class Reflex {
           }
 
           connectedCallback() {
-            const validName = `${reflex.prefix}-${this.nodeName.toLowerCase()}`;
+            const validName = `x-${this.nodeName.toLowerCase()}`;
             if (this.getAttribute("is") !== validName) {
-              console.error(`Chance to is="${reflex.prefix}-${validName}"`, this);
+              console.error(`Chance to is="x-${validName}"`, this);
             }
 
             this.bindAttributes = Array.from(this.attributes).filter(
               ({ name }) =>
                 name.startsWith(":") ||
                 name === "for" ||
-                name === "if" ||
+                name === "show" ||
                 name === "text" ||
                 name === "html"
             );
@@ -117,7 +115,7 @@ export default class Reflex {
                 } else {
                   show = false;
                 }
-              } else if (name === "if" && !value) {
+              } else if (name === "show" && !value) {
                 show = false;
               } else if (name === "text" && this.textContent !== value) {
                 this.textContent = value;
@@ -163,7 +161,7 @@ export default class Reflex {
                 path = path.split(" in ")[1];
               }
 
-              if (name === "if") {
+              if (name === "show") {
                 path = path.split(" ")[0];
               }
 
@@ -200,7 +198,10 @@ export default class Reflex {
               this.path[name.replace(":", "")] = path;
 
               // Observe path
-              this.reflex.observe(path, this.render.bind(this));
+              this.reflex.observe({
+                path,
+                handler: this.render.bind(this),
+              });
             });
           }
         },

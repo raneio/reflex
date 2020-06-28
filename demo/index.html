@@ -12,9 +12,9 @@
   <body>
     <header>
       <h1>
-        <span is="reflex-span" text="titleUpperCase"></span>
+        <div is="x-div" text="titleUpperCase"></div>
         <input
-          is="reflex-input"
+          is="x-input"
           :value="title"
           oninput="reflex.set(this.path.value, this.value)"
         />
@@ -23,13 +23,13 @@
       <form>
         <h4>Add new task</h4>
         <input
-          is="reflex-input"
+          is="x-input"
           :value="newTask"
           oninput="reflex.set(this.path.value, this.value)"
           autofocus
         />
         <button
-          is="reflex-button"
+          is="x-button"
           onclick="addTask()"
           :disabled="disableAddButton"
         >
@@ -39,10 +39,10 @@
     </header>
 
     <main>
-      <div is="reflex-div" for="task in tasks" class="task">
-        <div is="reflex-div" text="task"></div>
+      <div is="x-div" for="task in tasks" class="task">
+        <div is="x-div" text="task"></div>
         <button
-          is="reflex-button"
+          is="x-button"
           onclick="removeTask(this.dataset.index)"
           :data-index="#task"
         >

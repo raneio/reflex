@@ -6,11 +6,10 @@ Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vu
 
 - Light, fast and simple
 - Minimalistic API
-- Global state *(get and set data easily at the site wide)*
+- Global state _(get and set data easily at the site wide)_
 - No CLI
 - No compiler
 - No virtual DOM
-- No non standard components *(use [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components))*
 
 **DEMO: https://codepen.io/raneio/full/bGVbrLw**
 
@@ -36,6 +35,8 @@ or
 import Reflex from "@raneio/reflex"; // or use script tag
 
 window.reflex = new Reflex({
+  prefix: "reflex",
+  elements: ["h3", "div", "img", "input"],
   state: {
     title: "Awesome monkeys!",
     titleUpperCase: "",
@@ -62,8 +63,8 @@ window.reflex = new Reflex({
 ## text / html
 
 ```html
-<h3 is="reflex-h3" text="title"></h3>
-<div is="reflex-div" html="subtitle"></div>
+<h3 is="x-h3" text="title"></h3>
+<div is="x-div" html="subtitle"></div>
 ```
 
 > ### Awesome monkeys!
@@ -73,30 +74,30 @@ window.reflex = new Reflex({
 ## :attribute
 
 ```html
-<img is="reflex-img" :src="animals.0.photo" :alt="animals.0.name" />
+<img is="x-img" :src="animals.0.photo" :alt="animals.0.name" />
 ```
 
-> ![Monk](https://source.unsplash.com/Z05GiksmqYU/150x150) 
+> ![Monk](https://source.unsplash.com/Z05GiksmqYU/150x150)
 
 ## for
 
 ```html
-<div is="reflex-div" for="animal in animals">
+<div is="x-div" for="animal in animals">
   <img
-    is="reflex-img"
+    is="x-img"
     :src="animal.photo"
     :alt="animal.name"
     :data-index="#animal"
-  />
+  /> 
 </div>
 ```
 
 > ![Monk](https://source.unsplash.com/Z05GiksmqYU/150x150) ![Twins](https://source.unsplash.com/aXqlZFeVFrU/150x150) ![Jon Snow](https://source.unsplash.com/iJ7cD_VocxE/150x150)
 
-## if
+## show
 
 ```html
-<div is="reflex-div" if="showExample"></div>
+<div is="x-div" show="showExample"></div>
 ```
 
 ## set()
@@ -107,7 +108,7 @@ reflex.set("title", "Monkeys are awesome!");
 
 ```html
 <input
-  is="reflex-input"
+  is="x-input"
   :value="title"
   oninput="reflex.set(this.path.value, this.value)"
 />
@@ -117,23 +118,25 @@ reflex.set("title", "Monkeys are awesome!");
 
 ```javascript
 const title = reflex.get("title");
+// or
+const title = reflex.state.title;
 ```
 
 ## observe()
 
 ```javascript
-reflex.observe(
-  "title",
-  (newValue, oldValue) => {
+reflex.observe({
+  path: "title",
+  handler: (newValue, oldValue) => {
     reflex.set("titleUpperCase", newValue.toUpperCase());
   },
-  { immediate: true }
-);
+  immediate: true,
+});
 ```
 
 ```html
-<div is="reflex-div" text="title"></div>
-<div is="reflex-div" text="titleUpperCase"></div>
+<div is="x-div" text="title"></div>
+<div is="x-div" text="titleUpperCase"></div>
 ```
 
 > Monkeys are awesome!  
