@@ -20,7 +20,7 @@ Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vu
 ## Install
 
 ```html
-<script src="//unpkg.com/@raneio/reflex"></script>
+<script src="//unpkg.com/@raneio/reflex/Reflex.min.js"></script>
 
 <!-- Polyfill for Safari -->
 <script src="//unpkg.com/@ungap/custom-elements-builtin"></script>
