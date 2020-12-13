@@ -144,6 +144,9 @@ reflex.observe({
 > Monkeys are awesome!  
 > MONKEYS ARE AWESOME!
 
+## Package update guide
+https://docs.npmjs.com/updating-your-published-package-version-number
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
