@@ -30,7 +30,7 @@ reflex.observe({
   immediate: true,
 });
 
-window.addTask = (even) => {
+window.addTask = (event) => {
   event.preventDefault();
   const tasks = [reflex.state.newTask, ...reflex.state.tasks];
   reflex.set("tasks", tasks);

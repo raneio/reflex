@@ -150,7 +150,7 @@ export default class Reflex {
 
           _renderChilds(node) {
             node
-              .querySelectorAll(`[is^='${reflex.prefix}-'`)
+              .querySelectorAll(`[is^='x-'`)
               .forEach((childNode) => childNode.render && childNode.render());
           }
 
