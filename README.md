@@ -1,6 +1,6 @@
 # REFLEX
 
-Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vuejs.org) and [React](https://reactjs.org/), but the Reflex filesize is **less than 2kb** (min+gzip). Reflex is based on web components – more precisely customized built-in elements.
+Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vuejs.org) and [React](https://reactjs.org/), but the Reflex filesize is only **3kb**. Reflex is based on web components – more precisely customized built-in elements.
 
 **Why Reflex?**
 
@@ -20,7 +20,8 @@ Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vu
 ## Install
 
 ```html
-<script src="//unpkg.com/@raneio/reflex/Reflex.min.js"></script>
+<!-- Reflex version 2.1.0 -->
+<script src="//unpkg.com/@raneio/reflex@2.1.0/Reflex.min.js"></script>
 
 <!-- Polyfill for Safari -->
 <script src="//unpkg.com/@ungap/custom-elements-builtin"></script>
