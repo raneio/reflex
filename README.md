@@ -17,26 +17,14 @@ Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vu
 
 ---
 
-## Install
-
-```html
-<!-- Reflex version 2.1.0 -->
-<script src="//unpkg.com/@raneio/reflex@2.1.0/Reflex.min.js"></script>
-
-<!-- Polyfill for Safari -->
-<script src="//unpkg.com/@ungap/custom-elements-builtin"></script>
-```
-
-or
-
-```shell
-npm install @raneio/reflex
-```
-
 ## Get started
 
 ```javascript
-import Reflex from "@raneio/reflex"; // or use script tag
+import 'https://cdn.skypack.dev/@ungap/custom-elements-builtin' // Polyfill for Safari
+import Reflex from "https://cdn.skypack.dev/@raneio/reflex@2.1.0/Reflex.min.js";
+
+// You can also install Reflex and polyfill locally
+// npm install @raneio/reflex @ungap/custom-elements-builtin
 
 window.reflex = new Reflex({
   elements: ["h3", "div", "img", "input"],
