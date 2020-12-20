@@ -48,7 +48,6 @@ export default class Reflex {
   define(elements) {
     const reflex = this;
     elements.forEach((tag) => {
-      console.log(`x-${tag}`);
       customElements.define(
         `x-${tag}`,
         class extends document.createElement(tag).constructor {
