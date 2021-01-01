@@ -140,4 +140,4 @@ https://docs.npmjs.com/updating-your-published-package-version-number
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright 2020, Rane Ahonen, [Rane.io](https://rane.io)
+Copyright 2021, Rane Ahonen, [Rane.io](https://rane.io)
