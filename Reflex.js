@@ -166,7 +166,9 @@ export default class Reflex {
 
               const getParents = (el, _parents = []) => {
                 const closestEl =
-                  el.parentNode && el.parentNode.closest("[for], [_for]");
+                  el.parentNode &&
+                  el.parentNode.closest &&
+                  el.parentNode.closest("[for], [_for]");
                 if (closestEl) {
                   _parents.push(closestEl);
                   return getParents(closestEl, _parents);
