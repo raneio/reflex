@@ -1,6 +1,6 @@
 {
   "name": "@raneio/reflex",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Reflex adds reactivity to build-in HTML elements.",
   "main": "Reflex.js",
   "repository": {
