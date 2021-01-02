@@ -3,7 +3,6 @@
 import Reflex from "../Reflex.js";
 
 window.reflex = new Reflex({
-  elements: ["div", "input", "button"],
   state: {
     title: "Reflex Demo",
     titleUpperCase: null,

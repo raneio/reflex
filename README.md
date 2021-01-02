@@ -27,7 +27,6 @@ import Reflex from "https://cdn.skypack.dev/@raneio/reflex?min";
 // npm install @raneio/reflex @ungap/custom-elements-builtin
 
 window.reflex = new Reflex({
-  elements: ["h3", "div", "img", "input"],
   state: {
     title: "Awesome monkeys!",
     titleUpperCase: "",
