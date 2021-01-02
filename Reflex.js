@@ -1,7 +1,123 @@
 "use strict";
 
 export default class Reflex {
-  constructor({ state, elements = [] }) {
+  constructor({
+    state,
+    elements = [
+      "a",
+      "abbr",
+      "address",
+      "area",
+      "article",
+      "aside",
+      "audio",
+      "b",
+      "base",
+      "bdi",
+      "bdo",
+      "blockquote",
+      "body",
+      "br",
+      "button",
+      "canvas",
+      "caption",
+      "cite",
+      "code",
+      "col",
+      "colgroup",
+      "data",
+      "datalist",
+      "dd",
+      "del",
+      "details",
+      "dfn",
+      "dialog",
+      "div",
+      "dl",
+      "dt",
+      "em",
+      "embed",
+      "fieldset",
+      "figcaption",
+      "figure",
+      "footer",
+      "form",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "head",
+      "header",
+      "hgroup",
+      "hr",
+      "html",
+      "i",
+      "iframe",
+      "img",
+      "input",
+      "ins",
+      "kbd",
+      "label",
+      "legend",
+      "li",
+      "link",
+      "main",
+      "map",
+      "mark",
+      "menu",
+      "meta",
+      "meter",
+      "nav",
+      "noscript",
+      "object",
+      "ol",
+      "optgroup",
+      "option",
+      "output",
+      "p",
+      "param",
+      "picture",
+      "pre",
+      "progress",
+      "q",
+      "rp",
+      "rt",
+      "ruby",
+      "s",
+      "samp",
+      "script",
+      "section",
+      "select",
+      "slot",
+      "small",
+      "source",
+      "span",
+      "strong",
+      "style",
+      "sub",
+      "summary",
+      "sup",
+      "table",
+      "tbody",
+      "td",
+      "template",
+      "textarea",
+      "tfoot",
+      "th",
+      "thead",
+      "time",
+      "title",
+      "tr",
+      "track",
+      "u",
+      "ul",
+      "var",
+      "video",
+      "wbr",
+    ],
+  }) {
     this.state = state;
     this.observer = {};
     this.define(elements);
@@ -117,9 +233,11 @@ export default class Reflex {
               } else if (name === "show" && !value) {
                 show = false;
               } else if (name === "text" && this.textContent !== value) {
-                this.textContent = value;
+                this.textContent =
+                  typeof value === "object" ? JSON.stringify(value) : value;
               } else if (name === "html" && this.innerHTML !== value) {
-                this.innerHTML = value;
+                this.innerHTML =
+                  typeof value === "object" ? JSON.stringify(value) : value;
               } else if (name.startsWith(":")) {
                 if (value === false) {
                   this.removeAttribute(name.slice(1));
@@ -131,7 +249,10 @@ export default class Reflex {
                     this.getAttribute(name.slice(1)) + " " + value
                   );
                 } else {
-                  this.setAttribute(name.slice(1), value);
+                  this.setAttribute(
+                    name.slice(1),
+                    typeof value === "object" ? JSON.stringify(value) : value
+                  );
                 }
               }
 
