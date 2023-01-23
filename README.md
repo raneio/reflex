@@ -11,7 +11,7 @@ Reflex adds reactivity to build-in HTML elements. It works like [Vue](https://vu
 - No compiler
 - No virtual DOM
 
-**DEMO: https://codepen.io/raneio/full/bGVbrLw**
+**DEMO: https://raneio.github.io/reflex/demo/**
 
 **NPM: https://www.npmjs.com/package/@raneio/reflex**
 
